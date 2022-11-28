@@ -1,0 +1,25 @@
+---
+title: "Homework 5"
+author: "Cydney Jardine"
+date: "11/28/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(ggthemes)
+library(broom)
+library(dlnm)
+library(stats)
+library(knitr)
+library(scales)
+```
+
+##Input dataset
+```{r input data}
+library(readr)
+homicide_data <- read_csv("data/homicide-data.csv")
+```
+
