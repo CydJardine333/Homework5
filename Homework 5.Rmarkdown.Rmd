@@ -43,3 +43,13 @@ per_month <- baltimore1 %>%
   group_by(year(Date), month(Date)) %>%
   summarize(Per_Month = n())
 ```
+
+##Defining summer and winter months
+```{r months}
+per_month1 <- per_month %>%
+  mutate(Weather = `month(Date)` %in% 5:10)
+
+per_month1 <- per_month1 %>%
+  mutate(Weather = factor(Weather, levels = c(TRUE, FALSE),
+                          labels = c("Summer", "Winter")))
+```
