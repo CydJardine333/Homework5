@@ -31,8 +31,15 @@ baltimore <- homicide_data %>%
   filter(city_name == "Baltimore,MD")
 ```
 
-##Number of homicides per month
-```{r per month}
+##Baltimore data
+```{r baltimore}
 baltimore1 <- baltimore %>%
   mutate(Date = ymd(reported_date))
+```
+
+##Homicides per month
+```{r per month}
+per_month <- baltimore1 %>%
+  group_by(year(Date), month(Date)) %>%
+  summarize(Per_Month = n())
 ```
