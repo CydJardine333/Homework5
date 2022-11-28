@@ -23,3 +23,9 @@ library(readr)
 homicide_data <- read_csv("data/homicide-data.csv")
 ```
 
+```{r city_state}
+#new column combining state and city; filter to baltimore
+baltimore <- homicide_data %>%
+  mutate(city_name = str_c(city, state, sep = ",")) %>%
+  filter(city_name == "Baltimore,MD")
+```
