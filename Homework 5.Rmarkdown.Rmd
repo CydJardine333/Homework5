@@ -41,7 +41,7 @@ baltimore1 <- baltimore %>%
 ```{r per month}
 per_month <- baltimore1 %>%
   group_by(year(Date), month(Date)) %>%
-  summarize(Per_Month = n())
+  mutate(New_Date = str_c(`year(Date)`, '-', `month(Date)`))
 ```
 
 ##Defining summer and winter months
@@ -52,4 +52,17 @@ per_month1 <- per_month %>%
 per_month1 <- per_month1 %>%
   mutate(Weather = factor(Weather, levels = c(TRUE, FALSE),
                           labels = c("Summer", "Winter")))
+```
+
+```{r}
+per_month2 <- per_month1 %>%
+  mutate(New_Date = str_c(`year(Date)`, '-', `month(Date)`))
+per_month3 <- baltimore1 %>%
+  
+```
+##Build graph
+```{r plot1}
+ggplot(per_month2, aes(x = New_Date, y = Per_Month)) +
+  geom_col()
+
 ```
