@@ -15,6 +15,7 @@ library(dlnm)
 library(stats)
 library(knitr)
 library(scales)
+library(lubridate)
 ```
 
 ##Input dataset
@@ -28,4 +29,10 @@ homicide_data <- read_csv("data/homicide-data.csv")
 baltimore <- homicide_data %>%
   mutate(city_name = str_c(city, state, sep = ",")) %>%
   filter(city_name == "Baltimore,MD")
+```
+
+##Number of homicides per month
+```{r per month}
+baltimore1 <- baltimore %>%
+  mutate(Date = ymd(reported_date))
 ```
