@@ -65,7 +65,8 @@ per_month2 <- per_month2 %>%
 ##Build graph
 ```{r plot1}
 per_month2 %>%
-ggplot(aes(x = Date, y = Total, fill = Weather)) +
-  geom_bar(stat = "identity")
+ggplot(aes(x = Date, y = Total)) +
+  geom_bar(aes(fill = Weather), stat = "identity") +
+  geom_smooth(stat = "identity")
 
 ```
