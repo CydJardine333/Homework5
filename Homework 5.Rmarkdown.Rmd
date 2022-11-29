@@ -56,14 +56,16 @@ per_month1 <- per_month1 %>%
 
 ```{r permonth}
 per_month2 <- per_month1 %>%
-  select(New_Date, Weather) %>%
+  select(Date, Weather, New_Date)
+per_month2 <- per_month2 %>%
   group_by(New_Date) %>%
   mutate(Total = n())
 ```
 
 ##Build graph
 ```{r plot1}
-ggplot(per_month2, aes(x = New_Date, y = Total, group = `year(Date)`)) +
-  geom_col()
+per_month2 %>%
+ggplot(aes(x = Date, y = Total, fill = Weather)) +
+  geom_bar(stat = "identity")
 
 ```
