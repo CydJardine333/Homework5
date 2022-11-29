@@ -62,13 +62,14 @@ per_month2 <- per_month2 %>%
   mutate(Total = n())
 ```
 
+fg <- (date = c(as.Date("2015-04-12")))
+
 ##Build graph
 ```{r plot1}
 per_month2 %>%
 ggplot(aes(x = Date, y = Total)) +
+  geom_vline(xintercept = 2015-04-12, color = "red", linetype = 2) +
   geom_col(aes(fill = Weather), stat = "identity") +
-  geom_smooth(stat = "identity") 
+  geom_smooth(stat = "identity")
 
 ```
-
-?vline
