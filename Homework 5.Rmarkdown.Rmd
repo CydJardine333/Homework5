@@ -56,20 +56,39 @@ per_month1 <- per_month1 %>%
 
 ```{r permonth}
 per_month2 <- per_month1 %>%
-  select(Date, Weather, New_Date)
-per_month2 <- per_month2 %>%
+  select(Date, Weather, New_Date) %>%
   group_by(New_Date) %>%
-  mutate(Total = n())
+  mutate(Total = n()) %>%
+  distinct(New_Date, .keep_all = TRUE)
 ```
 
 fg <- (date = c(as.Date("2015-04-12")))
 
 ##Build graph
-```{r plot1}
+```{r plot1, fig.width= 12, fig.height= 3}
 per_month2 %>%
 ggplot(aes(x = Date, y = Total)) +
-  geom_vline(xintercept = 2015-04-12, color = "red", linetype = 2) +
-  geom_col(aes(fill = Weather), stat = "identity") +
-  geom_smooth(stat = "identity")
+  scale_fill_manual(values = c("grey", "lightblue")) +
+  geom_bar(aes(fill = Weather), stat = "identity", width = 35) +
+  geom_smooth(aes(x = Date, y = Total)) +
+  geom_vline(aes(xintercept = as.numeric(as.Date(vline))),
+             linetype = 3, col = "red", size = 1) +
+  annotate("text", x = Date[93], y = 41 - 0.1,
+           label = "Arrest of \n Freddie Gray", color = "darkgrey")
+
+adf %>%
+
+  ggplot(aes(x = date, y = monthly_homicides)) +
+  geom_smooth(aes(x = date, y = monthly_homicides), span = 0.3, size = 1) +
+  geom_bar(aes(fill = season), stat = "identity", width = 35, color = "darkgrey") +
+  scale_fill_manual(values = c("grey","lightblue")) +
+  labs(x = "Date", y = "Monthly Homicides") +
+  ggtitle("Homicides in Baltimore, MD") +
+  geom_vline(aes(xintercept= as.numeric(as.Date(v_line))),
+             linetype=3,col="red", size =1.5) +
+  annotate("text", x = df$date[93], y = 41 - 0.1,
+           label = "Arrest of \n Freddie Gray", color = "darkgrey") +
+  theme_dark() +
+  theme(legend.position = "bottom")
 
 ```
