@@ -70,25 +70,11 @@ per_month2 %>%
 ggplot(aes(x = Date, y = Total)) +
   geom_bar(aes(fill = Weather), stat = "identity", width = 35) +
   scale_fill_manual(values = c("grey", "lightblue")) +
-  geom_smooth(aes(x = Date, y = Total)) +
+  geom_smooth(se = FALSE, span = 0.1) +
   geom_vline(aes(xintercept = as.numeric(as.Date(vline))),
              linetype = 3, col = "red", size = 1) +
   annotate("text", x = per_month$Date[1700], y = 41 - 0.1,
-           label = "Arrest of \n Freddie Gray", color = "darkgrey")
-```
-adf %>%
-
-  ggplot(aes(x = date, y = monthly_homicides)) +
-  geom_smooth(aes(x = date, y = monthly_homicides), span = 0.3, size = 1) +
-  geom_bar(aes(fill = season), stat = "identity", width = 35, color = "darkgrey") +
-  scale_fill_manual(values = c("grey","lightblue")) +
-  labs(x = "Date", y = "Monthly Homicides") +
-  ggtitle("Homicides in Baltimore, MD") +
-  geom_vline(aes(xintercept= as.numeric(as.Date(v_line))),
-             linetype=3,col="red", size =1.5) +
-  annotate("text", x = df$date[93], y = 41 - 0.1,
            label = "Arrest of \n Freddie Gray", color = "darkgrey") +
   theme_dark() +
   theme(legend.position = "bottom")
-
 ```
