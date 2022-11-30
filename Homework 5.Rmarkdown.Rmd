@@ -2,7 +2,9 @@
 title: "Homework 5"
 author: "Cydney Jardine"
 date: "11/28/2022"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -21,7 +23,7 @@ library(lubridate)
 ##Input dataset
 ```{r input data}
 library(readr)
-homicide_data <- read_csv("data/homicide-data.csv")
+homicide_data <- read_csv("~/Desktop/Homework5/data/homicide-data.csv")
 ```
 
 ```{r city_state}
@@ -62,10 +64,11 @@ per_month2 <- per_month1 %>%
   distinct(New_Date, .keep_all = TRUE)
 ```
 
+```{r plot1, fig.width= 12, fig.height= 3}
+
 vline <- "2015-04-12"
 
 ##Build graph
-```{r plot1, fig.width= 12, fig.height= 3}
 per_month2 %>%
 ggplot(aes(x = Date, y = Total)) +
   geom_bar(aes(fill = Weather), stat = "identity", width = 35) +
